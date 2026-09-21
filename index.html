@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="headerCt">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <img src="menu.png" alt="Menú">
+            </button>
+            <img src="logo.png" alt="Logo Paint Rush" class="logo">
+            <nav class="nav-menu" id="navMenu">
+                <button class="menu-close" id="menuClose" aria-label="Cerrar menú">✖</button>
+                <span class="menu-titulo">OPCIÓN</span>
+                <a href="" class="active">INICIO</a>
+                <a href="">EXPERIENCIAS</a>
+                <a href="">TESTIMONIOS</a>
+                <a href="">UBÍCANOS</a>
+                <a href="">PREGUNTAS FRECUENTES</a>
+            </nav>
+        </div>
+    </header>
+    <div class="carousel-wrapper">
+
+        <!-- Contenedor visual del carrusel -->
+        <div class="carousel-viewport">
+            
+            <!-- Pista flexible que contiene los elementos horizontalmente -->
+            <div id="track" class="carousel-track">
+                
+                <!-- Diapositiva 1 -->
+                <article class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1426604966848-d7adac902bff?auto=format&fit=crop&w=1200&q=80" alt="Paisaje montañoso" onerror="this.src='https://placehold.co/800x450/1e293b/38bdf8?text=Imagen+1'">
+                    <div class="carousel-caption">
+                        <h3>Montañas Majestuosas</h3>
+                        <p>Paisajes naturales con vistas panorámicas inigualables.</p>
+                    </div>
+                </article>
+
+                <!-- Diapositiva 2 -->
+                <article class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Playa tropical" onerror="this.src='https://placehold.co/800x450/1e293b/38bdf8?text=Imagen+2'">
+                    <div class="carousel-caption">
+                        <h3>Costa Cristalina</h3>
+                        <p>Atardeceres relajantes frente al mar Caribe.</p>
+                    </div>
+                </article>
+
+                <!-- Diapositiva 3 -->
+                <article class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80" alt="Bosque verde" onerror="this.src='https://placehold.co/800x450/1e293b/38bdf8?text=Imagen+3'">
+                    <div class="carousel-caption">
+                        <h3>Bosques Profundos</h3>
+                        <p>La tranquilidad y frescura de la vegetación nativa.</p>
+                    </div>
+                </article>
+
+                <!-- Diapositiva 4 -->
+                <article class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80" alt="Cumbres nevadas" onerror="this.src='https://placehold.co/800x450/1e293b/38bdf8?text=Imagen+4'">
+                    <div class="carousel-caption">
+                        <h3>Cumbres Nevadas</h3>
+                        <p>Aventuras extremas en las cimas más altas del mundo.</p>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- Botones de navegación laterales -->
+            <button id="prevBtn" class="carousel-btn btn-prev" aria-label="Anterior">&lt;</button>
+            <button id="nextBtn" class="carousel-btn btn-next" aria-label="Siguiente">&gt;</button>
+
+        </div>
+
+        <!-- Puntos indicadores inferiores -->
+        <div id="dotsContainer" class="carousel-footer">
+            <button class="dot active" data-index="0" aria-label="Ir a diapositiva 1"></button>
+            <button class="dot" data-index="1" aria-label="Ir a diapositiva 2"></button>
+            <button class="dot" data-index="2" aria-label="Ir a diapositiva 3"></button>
+            <button class="dot" data-index="3" aria-label="Ir a diapositiva 4"></button>
+        </div>
+
+    </div>
+    <div class="separator">
+        <img src="separator.png" alt="">
+    </div>
+    <div class="experiencies">
+        <section class="experiences-section">
+            <h2 class="section-title">Nuestras Experiencias</h2>
+    
+            <div class="slider-container">
+                <div class="slider-viewport">
+                    <div id="sliderTrack" class="slider-track">
+                        
+                        <!-- Tarjeta 1: NEÓN -->
+                        <article class="experience-card">
+                            <div class="card-image-box">
+                                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Neón Experience" onerror="this.src='https://placehold.co/400x300/111111/ff007f?text=Neon'">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title neon">Neón</h3>
+                                <p class="card-description">Experiencia donde pondrás a prueba tu puntería.</p>
+                            </div>
+                        </article>
+    
+                        <!-- Tarjeta 2: PASTEL -->
+                        <article class="experience-card">
+                            <div class="card-image-box">
+                                <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80" alt="Pastel Experience" onerror="this.src='https://placehold.co/400x300/111111/ffffff?text=Pastel'">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title pastel">Pastel</h3>
+                                <p class="card-description">Grupos de 2 a 6 personas.</p>
+                            </div>
+                        </article>
+    
+                        <!-- Tarjeta 3: DUO SHOT -->
+                        <article class="experience-card">
+                            <div class="card-image-box">
+                                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80" alt="Duo Shot Experience" onerror="this.src='https://placehold.co/400x300/111111/ffffff?text=Duo+Shot'">
+                            </div>
+                            <div class="card-content">
+                                <h3 class="card-title duo">Duo Shot</h3>
+                                <p class="card-description">Eventos, fiestas, cumpleaños y celebraciones.</p>
+                            </div>
+                        </article>
+    
+                    </div>
+                </div>
+    
+                <!-- Controles de navegación exclusiva para mobile -->
+                <div class="slider-controls">
+                    <button id="prevBtn2" class="slider-btn2" aria-label="Anterior">&larr;</button>
+                    <div id="dotsContainer" class="slider-dots">
+                        <button class="dot2 active" data-index="0" aria-label="Slide 1"></button>
+                        <button class="dot2" data-index="1" aria-label="Slide 2"></button>
+                        <button class="dot2" data-index="2" aria-label="Slide 3"></button>
+                    </div>
+                    <button id="nextBtn2" class="slider-btn2" aria-label="Siguiente">&rarr;</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="separator">
+        <img src="separator.png" alt="">
+    </div>
+    <div class="testimonios">
+        <div class="testimoniosCt">
+            <h2 class="section-title">Testimonios</h2>
+            <div class="testimoniosCtItems">
+                <div class="testimoniosItem" style="background-color: red;"></div>
+                <div class="testimoniosItem" style="background-color: yellow;"></div>
+                <div class="testimoniosItem" style="background-color: blue;"></div>
+                <div class="testimoniosItem" style="background-color: green;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="ubicanos">
+        <div class="ubicanosCt">
+            <div class="ubicanosCtInfo">
+                <h2>Ubícanos</h2>
+                <p><span>Av. El Ejercito 172, Miraflores</span><br>Referencia: a 1 cuadra del Parque Grau</p>
+            </div>
+            <div class="ubicanosCtMapa">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.910184426701!2d-77.04327010000006!3d-12.118297599999993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c83ac1d121e9%3A0x74a439555d6a187c!2sAv.%20del%20Ej%C3%A9rcito%20172%2C%20Miraflores%2015074!5e0!3m2!1ses-419!2spe!4v1789957622564!5m2!1ses-419!2spe" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="faqs-section" id="faqsSection">
+        <div class="faqs-sticky-wrapper">
+            <h2 class="section-title">PREGUNTAS FRECUENTES</h2>
+            
+            <!-- Pista horizontal flexible que contendrá las preguntas -->
+            <div class="faqs-track" id="faqsTrack">
+                <!-- Primeras 3 preguntas iniciales -->
+                <div class="faq-card">¿Qué es un Splatter Room?</div>
+                <div class="faq-card">¿Por qué debo ir a un Splatter Room?</div>
+                <div class="faq-card">¿Pueden ingresar menores de edad?</div>
+                
+                <!-- Preguntas restantes ocultas inicialmente -->
+                <div class="faq-card faq-hidden">¿Cuáles son las recomendaciones de ropa?</div>
+                <div class="faq-card faq-hidden">¿Cuánto dura la experiencia?</div>
+                <div class="faq-card faq-hidden">¿Se puede reservar para eventos privados?</div>
+            </div>
+
+            <!-- Botón Ver Más (aparecerá al final del recorrido inicial o se integrará al final de la pista) -->
+            <div class="faqs-btn-container" id="btnContainer">
+                <button id="btnVerMas" class="btn-ver-mas">VER MÁS PREGUNTAS</button>
+            </div>
+        </div>
+    </div>
+    <!--<footer>
+        <div class="footerCt">
+
+        </div>
+    </footer> -->
+    <script src="script.js"></script>
+</body>
+</html>

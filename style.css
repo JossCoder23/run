@@ -1,0 +1,764 @@
+*{
+    padding: 0;
+    font-family: "Commissioner", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --azul: #042354;
+    --azul-claro: #2841dd;
+    --naranja: #fe8512;
+    --morado-claro: #a449f9;
+    --morado: #292992;
+
+    --texto-96: clamp(2rem, 1.5rem + 2.5vw, 4.3rem);
+    --texto-72: clamp(1.75rem, 1.425rem + 1.625vw, 3.175rem);
+    --texto-69: clamp(1.625rem, 1.3rem + 1.61vw, 3.03rem);
+    --texto-40: clamp(1.125rem, 0.975rem + 0.75vw, 1.675rem);
+    --texto-37: clamp(1.06rem, 0.93rem + 0.67vw, 1.53rem);
+    --texto-35: clamp(1rem, 0.87rem + 0.64vw, 1.44rem);
+
+    --padding-mobile: 3rem;
+    --padding-desktop: 5rem;
+    --width-1250: 60rem;
+}
+
+p, h1, h2, h3, h4, h5 {
+    margin: 0;
+    padding: 0;
+    /* Desactiva las ligaduras estándar y discrecionales */
+    font-variant-ligatures: none;
+    -webkit-font-variant-ligatures: none; /* Prefijo importante para Safari/iOS */
+    
+    /* Soporte adicional por si el navegador ignora la regla anterior */
+    font-feature-settings: "liga" 0, "dlig" 0;
+    -webkit-font-feature-settings: "liga" 0, "dlig" 0;
+}
+
+/* Estilos base (Mobile) */
+header {
+    background-color: #111;
+    width: 100%;
+    /* position: relative; */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.headerCt {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    position: relative;
+}
+
+.logo {
+    height: 40px; /* Ajusta según el tamaño de tu logo */
+    object-fit: contain;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-toggle img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 5px;
+}
+
+/* Efecto hover opcional */
+.menu-close:hover {
+    color: #ffd700;
+}
+
+.btn-reservar-mobile {
+    background-color: #00e699;
+    color: #000;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/* Menú oculto por defecto en mobile (tipo panel lateral) */
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Fuera de la pantalla */
+    width: 75%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    padding: 80px 20px 20px 20px;
+    gap: 20px;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+/* Clase que activa la apertura del menú en mobile */
+.nav-menu.active {
+    left: 0;
+}
+
+.menu-titulo {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.nav-menu a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-menu a.active, 
+.nav-menu a:hover {
+    color: #ffd700; /* Color amarillo/activo similar a tu referencia */
+}
+
+.carousel-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 800px;
+    background-color: #1e293b;
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #334155;
+}
+
+.carousel-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carousel-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+.carousel-counter {
+    font-size: 0.875rem;
+    color: #94a3b8;
+    background-color: #0f172a;
+    padding: 4px 10px;
+    border: 1px solid #334155;
+}
+
+.carousel-viewport {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background-color: #000;
+    height: 18.75rem;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Slide caption overlay */
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.carousel-caption h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.carousel-caption p {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 47%;
+    transform: translateY(-50%);
+    background-color: rgba(15, 23, 42, 0.75);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    z-index: 10;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.carousel-btn:hover {
+    background-color: #0284c7;
+    border-color: #38bdf8;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.btn-prev {
+    left: 16px;
+}
+
+.btn-next {
+    right: 16px;
+}
+
+.carousel-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    width: 100%;
+    bottom: 2rem;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #475569;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, width 0.3s;
+}
+
+.dot.active {
+    width: 28px;
+    border-radius: 6px;
+    background-color: #38bdf8;
+}
+
+.dot:hover:not(.active) {
+    background-color: #64748b;
+}
+
+.separator {
+    overflow: hidden;
+    height: 5rem;
+}
+
+.separator img {
+    object-fit: contain;
+    height: 5rem;
+    width: auto;
+}
+
+.experiencies {
+    padding: 3rem;
+    background-color: #A8E500;
+}
+
+.experiences-section {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    color: var(--color-negro);
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-viewport {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    padding: 10px 0;
+}
+
+.slider-track {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-card {
+    background-color: var(--color-blanco);
+    border: 3px solid var(--color-negro);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+    text-align: center;
+    flex: 0 0 100%; /* En mobile ocupa el 100% */
+    min-height: 400px;
+    box-shadow: 6px 6px 0px var(--color-negro);
+    transition: transform 0.3s ease;
+    background-color: white;
+}
+
+.card-image-box {
+    width: 100%;
+    height: 220px;
+    background-color: #f3f4f6;
+    border: 2px dashed var(--color-negro);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.card-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.card-title {
+    font-size: 1.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-title.neon {
+    color: var(--color-rosa);
+}
+
+.card-title.pastel {
+    color: var(--color-negro);
+}
+
+.card-title.duo {
+    color: var(--color-negro);
+}
+
+.card-description {
+    font-size: 1rem;
+    color: #333333;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.slider-btn2 {
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
+}
+
+.slider-btn2:hover {
+    background-color: #333333;
+    transform: scale(1.05);
+}
+
+.slider-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.dot2 {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--color-negro);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot2.active {
+    width: 32px;
+    border-radius: 6px;
+    background-color: var(--color-negro);
+}
+
+@media (min-width: 768px) {
+    /* Ocultar controles de slider en desktop porque se muestran los 3 en fila */
+    .slider-controls {
+        display: none;
+    }
+
+    .slider-viewport {
+        overflow: visible;
+    }
+
+    .slider-track {
+        transform: none !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .experience-card {
+        flex: 1; /* Distribuye equitativamente las 3 tarjetas en fila */
+        min-height: 440px;
+    }
+}
+
+/* .testimonios {
+    padding: 3rem;
+    width: 100%;
+    background-color: #A8E500;
+}
+
+.testimoniosCt {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+}
+
+.testimoniosCtItems {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.testimoniosItem {
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    padding: 24px;
+    width: 80%;
+    min-height: 5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.testimoniosItem:nth-child(odd) {
+    align-self: flex-start;
+}
+
+.testimoniosItem:nth-child(even) {
+    align-self: flex-end;
+}
+
+.testimoniosItem.visible {
+    opacity: 1;
+    transform: translateY(0);
+} */
+
+.testimonios {
+    padding: 3rem 1rem;
+    width: 100%;
+    background-color: #A8E500;
+    position: relative;
+    /* Por defecto para MOBILE: altura natural compacta */
+    min-height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.testimoniosCt {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+    width: 100%;
+}
+
+.section-title {
+    text-align: center;
+}
+
+.testimoniosCtItems {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    height: 180px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.testimoniosItem {
+    position: absolute;
+    width: 90%;
+    max-width: 600px;
+    min-height: 5rem;
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, transform 0.5s ease-in-out;
+    transform: translateY(20px);
+}
+
+.testimoniosItem.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* A partir de ESCRITORIO (768px en adelante): Forzamos los 100vh exactos */
+@media (min-width: 768px) {
+    .testimonios {
+        height: 100vh;
+        min-height: 100vh;
+    }
+}
+
+.ubicanos {
+    padding: 3rem;
+    background-color: #181817;
+    width: 100%;
+}
+
+/* Contenedor principal estructurado con Flexbox en columna */
+.ubicanosCt {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 900px; /* Ajusta según el ancho máximo que prefieras para la sección */
+    margin: 0 auto;
+}
+
+.ubicanosCtInfo {
+    color: white;
+}
+
+/* Contenedor del mapa que gestiona los anchos y proporciones */
+.ubicanosCtMapa {
+    width: 100%;
+    display: flex;
+    border-radius: 16px;
+    overflow: hidden; /* Asegura que las esquinas redondeadas recorten el iframe */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    
+    /* Proporción por defecto para Mobile: 4 / 3 */
+    aspect-ratio: 4 / 3; 
+}
+
+/* El iframe se expande automáticamente al 100% del contenedor padre */
+.ubicanosCtMapa iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* A partir de pantallas de escritorio (768px o más), cambia la proporción a 16 / 9 */
+@media (min-width: 768px) {
+    .ubicanosCtMapa {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+.faqs-section {
+    position: relative;
+    width: 100%;
+    height: 180vh; /* Reducido de 300vh a 180vh para agilizar el movimiento */
+    background-color: #A8E500; 
+}
+
+/* Contenedor fijo (sticky) en pantalla mientras haces scroll */
+.faqs-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden; 
+}
+
+.section-title {
+    color: #000;
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 2rem;
+    font-weight: 900;
+}
+
+/* Pista flexible dispuesta estrictamente en fila con Flexbox */
+.faqs-track {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    padding-left: 5vw;
+    will-change: transform;
+    align-items: center;
+}
+
+/* Estilo de cada tarjeta de pregunta */
+.faq-card {
+    flex: 0 0 320px; 
+    height: 200px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Ocultas por defecto */
+.faq-card.faq-hidden {
+    display: none; 
+}
+
+/* Contenedor del botón integrado al final de la pista */
+.faqs-btn-container {
+    flex: 0 0 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo del Botón Ver Más */
+.btn-ver-mas {
+    background-color: #ff007f;
+    color: #ffffff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-ver-mas:hover {
+    background-color: #e0006f;
+    transform: scale(1.05);
+}
+
+/* Ajustes responsivos para celulares */
+@media (max-width: 768px) {
+    .faq-card {
+        flex: 0 0 260px;
+        height: 180px;
+        font-size: 1rem;
+    }
+}
