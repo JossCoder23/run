@@ -81,8 +81,8 @@ const totalSlides2 = slides2.length;
 function updateSlider(index) {
     // Solo aplicar animación de desplazamiento si estamos en móvil (ancho menor a 768px)
     if (window.innerWidth < 768) {
-        // Como hay gap o porcentajes directos, calculamos el desplazamiento del 100% por slide
-        track2.style.transform = `translateX(-${index * 100}%)`;
+        // Desplazamos -100% por la tarjeta, MENOS los 20px del gap multiplicados por el índice actual
+        track2.style.transform = `translateX(calc(-${index * 100}% - ${index * 20}px))`;
     } else {
         track2.style.transform = "none";
     }
@@ -246,15 +246,38 @@ const section2 = document.getElementById("faqsSection");
 const track3 = document.getElementById("faqsTrack");
 const btnVerMas = document.getElementById("btnVerMas");
 
-if (!section2 || !track3 || !btnVerMas) {
-    console.log("hay un error en testimonios")
+// Novedad: Función para ajustar la altura de la sección según la cantidad de tarjetas
+function ajustarAltura() {
+    if (!section2 || !track3) return;
+    
+    const trackScrollWidth = track3.scrollWidth - window.innerWidth;
+    
+    if (trackScrollWidth > 0) {
+        // Multiplicar por 0.8 acelera el scroll y reduce la altura necesaria.
+        // Si lo sientes muy rápido, cámbialo a 1 o 1.2. Si lo quieres más rápido, bájalo a 0.5.
+        const alturaExtra = trackScrollWidth * 0.8;
+        section2.style.height = `calc(100vh + ${alturaExtra}px)`;
+    } else {
+        section2.style.height = '100vh';
+    }
 }
 
-// Función que calcula y mueve las tarjetas según el scroll
+// Inicializar la altura al cargar y al redimensionar la pantalla
+window.addEventListener("load", ajustarAltura);
+window.addEventListener("resize", ajustarAltura);
+
 function actualizarMovimiento() {
+    if (!section2 || !track3) return;
+
     const rect = section2.getBoundingClientRect();
     const sectionHeight = section2.offsetHeight - window.innerHeight;
     const scrollPosition = -rect.top;
+
+    // Prevenir errores si la sección no requiere scroll horizontal
+    if (sectionHeight <= 0) {
+        track3.style.transform = `translateX(0px)`;
+        return;
+    }
 
     if (scrollPosition >= 0 && scrollPosition <= sectionHeight) {
         const progress = scrollPosition / sectionHeight;
@@ -265,24 +288,24 @@ function actualizarMovimiento() {
     }
 }
 
-// Evento de scroll global
 window.addEventListener("scroll", actualizarMovimiento);
 
-// Evento del botón "Ver más"
-btnVerMas.addEventListener("click", () => {
-    const tarjetasOcultas = document.querySelectorAll(".faq-card.faq-hidden");
-    
-    // Muestra las preguntas ocultas cambiándolas a flex
-    tarjetasOcultas.forEach(tarjeta => {
-        tarjeta.classList.remove("faq-hidden");
+if (btnVerMas) {
+    btnVerMas.addEventListener("click", () => {
+        const tarjetasOcultas = document.querySelectorAll(".faq-card.faq-hidden");
+        
+        tarjetasOcultas.forEach(tarjeta => {
+            tarjeta.classList.remove("faq-hidden");
+        });
+
+        const btnContainer = document.getElementById("btnContainer");
+        if (btnContainer) {
+            btnContainer.style.display = "none";
+        }
+
+        // Recalcular la altura porque ahora la pista es más ancha
+        ajustarAltura();
+        // Forzar actualización visual inmediata
+        actualizarMovimiento();
     });
-
-    // Oculta el botón una vez cargadas todas
-    const btnContainer = document.getElementById("btnContainer");
-    if (btnContainer) {
-        btnContainer.style.display = "none";
-    }
-
-    // Recalcula inmediatamente el ancho del track para que el scroll asimile las nuevas tarjetas
-    actualizarMovimiento();
-});
+}

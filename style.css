@@ -16,6 +16,8 @@ html {
     --morado-claro: #a449f9;
     --morado: #292992;
 
+    --negro: #181817;
+
     --texto-96: clamp(2rem, 1.5rem + 2.5vw, 4.3rem);
     --texto-72: clamp(1.75rem, 1.425rem + 1.625vw, 3.175rem);
     --texto-69: clamp(1.625rem, 1.3rem + 1.61vw, 3.03rem);
@@ -360,6 +362,7 @@ header {
     display: flex;
     width: 100%;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    column-gap: 20px;
 }
 
 .experience-card {
@@ -508,57 +511,8 @@ header {
     }
 }
 
-/* .testimonios {
-    padding: 3rem;
-    width: 100%;
-    background-color: #A8E500;
-}
-
-.testimoniosCt {
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-}
-
-.testimoniosCtItems {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.testimoniosItem {
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    padding: 24px;
-    width: 80%;
-    min-height: 5rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    position: sticky;
-    top: 0;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-}
-
-.testimoniosItem:nth-child(odd) {
-    align-self: flex-start;
-}
-
-.testimoniosItem:nth-child(even) {
-    align-self: flex-end;
-}
-
-.testimoniosItem.visible {
-    opacity: 1;
-    transform: translateY(0);
-} */
-
 .testimonios {
-    padding: 3rem 1rem;
+    padding: 3rem;
     width: 100%;
     background-color: #A8E500;
     position: relative;
@@ -584,7 +538,7 @@ header {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-    height: 180px; 
+    height: 160px; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -593,10 +547,10 @@ header {
 
 .testimoniosItem {
     position: absolute;
-    width: 90%;
+    width: 100%;
     max-width: 600px;
-    min-height: 5rem;
-    background-color: #1a1a1a;
+    min-height: 7rem;
+    background-color: var(--negro);
     border-radius: 20px;
     padding: 24px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
@@ -605,6 +559,31 @@ header {
     visibility: hidden;
     transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out, transform 0.5s ease-in-out;
     transform: translateY(20px);
+
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.testimoniosItemStars {
+    display: flex;
+    column-gap: .3rem;
+    color: white;
+}
+
+.testimoniosItemStars img {
+    width: 1.2rem;
+    height: auto;
+}
+
+.testimoniosItemPerson {
+    font-size: 1rem;
+    color: white;
+}
+
+.testimoniosItemDesc {
+    font-size: .8rem;
+    color: white;
 }
 
 .testimoniosItem.active {
@@ -639,6 +618,14 @@ header {
 
 .ubicanosCtInfo {
     color: white;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    text-align: center;
+}
+
+.ubicanosCtInfo p {
+    font-size: 1rem;
 }
 
 /* Contenedor del mapa que gestiona los anchos y proporciones */
@@ -670,7 +657,7 @@ header {
 .faqs-section {
     position: relative;
     width: 100%;
-    height: 180vh; /* Reducido de 300vh a 180vh para agilizar el movimiento */
+    height: 100vh; /* Reducido de 300vh a 180vh para agilizar el movimiento */
     background-color: #A8E500; 
 }
 
@@ -686,11 +673,16 @@ header {
     overflow: hidden; 
 }
 
+.faqs-sticky-wrapper h2 {
+    margin-bottom: 1.5rem;
+    padding: 0 3rem;
+}
+
 .section-title {
     color: #000;
     text-align: center;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     font-weight: 900;
 }
 
@@ -715,10 +707,32 @@ header {
     box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     font-weight: bold;
     display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-size: 1.1rem;
+}
+
+/* Empuja las tarjetas impares (1, 3, 5...) hacia arriba */
+.faq-card:nth-child(odd) {
+    transform: translateY(-60px);
+}
+
+/* Empuja las tarjetas pares (2, 4, 6...) hacia abajo */
+.faq-card:nth-child(even) {
+    transform: translateY(60px);
+}
+
+.faq-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.faq-card p {
+    font-size: .9rem;
+    font-weight: 400;
 }
 
 /* Ocultas por defecto */
@@ -728,7 +742,7 @@ header {
 
 /* Contenedor del botón integrado al final de la pista */
 .faqs-btn-container {
-    flex: 0 0 300px;
+    flex: 0 0 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -758,7 +772,7 @@ header {
 @media (max-width: 768px) {
     .faq-card {
         flex: 0 0 260px;
-        height: 180px;
+        height: auto;
         font-size: 1rem;
     }
 }
